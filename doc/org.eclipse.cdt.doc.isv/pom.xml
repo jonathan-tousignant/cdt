@@ -17,7 +17,7 @@
 	<parent>
 		<groupId>org.eclipse.cdt</groupId>
 		<artifactId>cdt-parent</artifactId>
-		<version>10.5.0-SNAPSHOT</version>
+		<version>10.6.0-SNAPSHOT</version>
 		<relativePath>../../pom.xml</relativePath>
 	</parent>
 
@@ -94,6 +94,46 @@
 									<goal>eclipse-run</goal>
 								</goals>
 								<phase>compile</phase>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.eclipse.tycho.extras</groupId>
+						<artifactId>tycho-document-bundle-plugin</artifactId>
+						<version>${tycho-version}</version>
+						<executions>
+							<execution>
+								<id>eclipse-javadoc</id>
+								<phase>generate-resources</phase>
+								<goals>
+									<goal>javadoc</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${project.basedir}/reference/api
+									</outputDirectory>
+									<javadocOptions>
+										<excludes>
+											<exclude>org.eclipse.cdt.internal.*</exclude>
+										</excludes>
+										<additionalArguments>
+											<additionalArgument>-windowtitle "Eclipse CDT API Specification"</additionalArgument>
+											<additionalArgument>-doctitle "Eclipse CDT API Specification"
+											</additionalArgument>
+											<additionalArgument>-link "https://docs.oracle.com/en/java/javase/11/docs/api/"</additionalArgument>
+											<additionalArgument>-linkoffline ../../org.eclipse.platform.doc.isv/reference/api
+											</additionalArgument>
+											<additionalArgument>-public</additionalArgument>
+											<additionalArgument>-header "Eclipse CDT 10.6.0"
+											</additionalArgument>
+											<additionalArgument>-bottom "Copyright (c) IBM Corp. and others 2004, 2021. All Rights Reserved."</additionalArgument>
+											<additionalArgument>-tag 'noimplement:a:Restriction:'</additionalArgument>
+											<additionalArgument>-tag 'noextend:a:Restriction:'</additionalArgument>
+											<additionalArgument>-tag 'noreference:a:Restriction:'</additionalArgument>
+											<additionalArgument>-tag 'noinstantiate:a:Restriction:'</additionalArgument>
+											<additionalArgument>-tag 'nooverride:a:Restriction:'</additionalArgument>
+										</additionalArguments>
+									</javadocOptions>
+								</configuration>
 							</execution>
 						</executions>
 					</plugin>
